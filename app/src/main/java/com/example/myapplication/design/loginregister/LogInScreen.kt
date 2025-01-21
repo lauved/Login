@@ -24,6 +24,8 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 
 @Composable
 fun LogInScreen() {
@@ -87,6 +89,7 @@ fun LogInScreen() {
             Text(
                 text = "Forgot password?",
                 fontSize = 12.sp,
+                color = Color(0xFF006400),
                 modifier = Modifier.clickable {  }
             )
         }
@@ -99,7 +102,11 @@ fun LogInScreen() {
             },
             modifier = Modifier.fillMaxWidth(0.8f)
                 .height(50.dp),
-            shape = RoundedCornerShape(10.dp)
+            shape = RoundedCornerShape(10.dp),
+                    colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF006400), // Dark green color
+            contentColor = Color.White // Set text color to white
+        )
 
         ) {
             Text(text = "Login")
@@ -123,7 +130,9 @@ fun LogInScreen() {
                 onClick = {  },
                 modifier = Modifier.align(Alignment.CenterVertically)
             ) {
-                Text(text = "Sign Up", fontSize = 14.sp, style = TextStyle(textDecoration = TextDecoration.Underline ))
+                Text(text = "Sign Up", fontSize = 14.sp,
+                    style = TextStyle(textDecoration = TextDecoration.Underline,
+                        color = Color(0xFF006400)))
 
             }
         }
