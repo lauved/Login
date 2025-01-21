@@ -32,6 +32,13 @@ fun LogInScreen() {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = Color.White
+    ) {
+
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
