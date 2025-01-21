@@ -88,7 +88,7 @@ fun LogInScreen() {
 
         Spacer(modifier = Modifier.height(10.dp))
 
-        Text(text = "Forget Password?", modifier = Modifier.clickable {})
+        Text(text = "Forgot Password?", modifier = Modifier.clickable {})
 
         Spacer(modifier = Modifier.height(200.dp))
 
@@ -102,3 +102,4 @@ fun LogInScreen() {
         }
     }
 }
+
