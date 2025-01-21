@@ -2,104 +2,137 @@ package com.example.myapplication.design.loginregister
 
 import android.util.Log
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Button
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
-import androidx.compose.runtime.Composable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextRange
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
 fun LogInScreen() {
-
-    var email by remember {
-        mutableStateOf("")
-    }
-
-    var password by remember {
-        mutableStateOf("")
-    }
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
 
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(horizontal = 16.dp)
+            .background(Color.White),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
-            painter = painterResource(id = R.drawable.download),
-            contentDescription = "LogInImage",
-            modifier = Modifier.size(200.dp)
+            painter = painterResource(id = R.drawable.vector),
+            contentDescription = "Login Image",
+            modifier = Modifier
+                .size(250.dp)
+                .padding(bottom = 16.dp)
         )
 
-        Text(text = "Welcome Back!", fontSize = 40.sp, fontWeight = FontWeight.Bold)
 
-        Spacer(modifier = Modifier.height(4.dp))
-
-        Text(text = "Login to your Account")
-
-        Spacer(modifier = Modifier.height(16.dp))
+        Text(
+            text = "Log into your account",
+            fontSize = 16.sp,
+            modifier = Modifier
+                .fillMaxWidth(0.8f)
+                .padding(bottom = 5.dp)
+        )
 
         OutlinedTextField(
             value = email,
-            onValueChange = {
-                email = it
-            },
-            label = {
-                Text(text = "Email Address")
-            }
+            onValueChange = { email = it },
+            leadingIcon = { Icon(imageVector = Icons.Default.Email, contentDescription = null) },
+            label = { Text(text = "Email Address") },
+            modifier = Modifier.fillMaxWidth(0.8f)
+
         )
 
         Spacer(modifier = Modifier.height(10.dp))
 
         OutlinedTextField(
             value = password,
-            onValueChange = {
-                password = it
-            },
-            label = {
-                Text(text = "Password")
-            },
-            visualTransformation = PasswordVisualTransformation()
+            onValueChange = { password = it },
+            leadingIcon = { Icon(imageVector = Icons.Default.Lock, contentDescription = null) },
+            label = { Text(text = "Password") },
+            visualTransformation = PasswordVisualTransformation(),
+            modifier = Modifier.fillMaxWidth(0.8f)
         )
 
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(4.dp))
 
-        Button(onClick = {
-            Log.i("Credential", "Email : $email Password : $password")
-        }) {
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(0.8f)
+                .padding(top = 8.dp),
+            horizontalArrangement = Arrangement.End
+        ) {
+            Text(
+                text = "Forgot password?",
+                fontSize = 12.sp,
+                modifier = Modifier.clickable {  }
+            )
+        }
+
+        Spacer(modifier = Modifier.height(20.dp))
+        
+        Button(
+            onClick = {
+                Log.i("Credential", "Email: $email, Password: $password")
+            },
+            modifier = Modifier.fillMaxWidth(0.8f)
+                .height(50.dp),
+            shape = RoundedCornerShape(10.dp)
+
+        ) {
             Text(text = "Login")
         }
 
         Spacer(modifier = Modifier.height(10.dp))
 
-        Text(text = "Forgot Password?", modifier = Modifier.clickable {})
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(0.8f)
+                .padding(top = 16.dp),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Text(
+                text = "Don't have an account?",
+                fontSize = 14.sp,
+                modifier = Modifier.align(Alignment.CenterVertically)
+            )
 
-        Spacer(modifier = Modifier.height(200.dp))
+            TextButton(
+                onClick = {  },
+                modifier = Modifier.align(Alignment.CenterVertically)
+            ) {
+                Text(text = "Sign Up", fontSize = 14.sp, style = TextStyle(textDecoration = TextDecoration.Underline ))
 
-        Text(
-            text = "Don't have an account?",
-            modifier = Modifier.padding(top = 16.dp)
-        )
-
-        TextButton(onClick = { }) {
-            Text(text = "Sign Up")
+            }
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun LogInScreenPreview() {
+    LogInScreen()
 }
 
